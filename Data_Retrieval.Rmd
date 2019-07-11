@@ -1,0 +1,60 @@
+---
+title: "Data_Retrieval"
+author: "Jake Greif"
+date: "7/11/2019"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+## Load Packages
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+install.packages("dataRetrieval")
+library(dataRetrieval)
+#vignette("dataRetrieval",package = "dataRetrieval")
+```
+
+## Haw River at Haw River, NC 
+```{r}
+siteNo1 <- "02096500"
+pCode1 <- "00060"
+start.date1 <- "1928-10-01"
+end.date1 <- "2019-07-11"
+
+Haw1 <- readNWISuv(siteNumbers = siteNo1,
+                     parameterCd = pCode1,
+                     startDate = start.date1,
+                     endDate = end.date1)
+
+Haw1 <- renameNWISColumns(Haw1)
+
+view(Haw1)
+```
+
+## Haw River near Bynum, NC
+```{r}
+siteNo2 <- "02096960"
+pCode2 <- "00060"
+start.date2 <- "1973-09-01"
+end.date2 <- "2019-07-11"
+
+Haw2 <- readNWISuv(siteNumbers = siteNo2,
+                     parameterCd = pCode2,
+                     startDate = start.date2,
+                     endDate = end.date2)
+
+Haw2 <- renameNWISColumns(Haw2)
+
+view(Haw2)
+```
+
+## Site Attribute URLs
+```{r}
+Haw1_att <- attr(Haw1, "url")
+Haw1_att
+
+Haw2_att <- attr(Haw2, "url")
+Haw2_att
+```
+
