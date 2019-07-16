@@ -10,6 +10,7 @@ editor_options:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
+library(ggplot2)
 install.packages("dataRetrieval")
 library(dataRetrieval)
 #vignette("dataRetrieval",package = "dataRetrieval")
@@ -19,8 +20,8 @@ library(dataRetrieval)
 ```{r}
 siteNo1 <- "02096500"
 pCode1 <- "00060"
-start.date1 <- "1928-10-01"
-end.date1 <- "2019-07-11"
+start.date1 <- "1989-01-01"
+end.date1 <- "2019-07-15"
 
 Haw1 <- readNWISuv(siteNumbers = siteNo1,
                      parameterCd = pCode1,
@@ -36,8 +37,8 @@ view(Haw1)
 ```{r}
 siteNo2 <- "02096960"
 pCode2 <- "00060"
-start.date2 <- "1973-09-01"
-end.date2 <- "2019-07-11"
+start.date2 <- "1989-01-01"
+end.date2 <- "2019-07-15"
 
 Haw2 <- readNWISuv(siteNumbers = siteNo2,
                      parameterCd = pCode2,
@@ -56,5 +57,11 @@ Haw1_att
 
 Haw2_att <- attr(Haw2, "url")
 Haw2_att
+```
+
+## Potential Additional Sites
+```{r}
+# 02096846- Cane Creek near Orange Grove, NC
+# 02098197- B. Everett Jordan Lake at Dam near Moncure, NC
 ```
 
