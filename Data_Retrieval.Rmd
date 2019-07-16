@@ -20,10 +20,10 @@ library(dataRetrieval)
 ```{r}
 siteNo1 <- "02096500"
 pCode1 <- "00060"
-start.date1 <- "1989-01-01"
-end.date1 <- "2019-07-15"
+start.date1 <- "1999-01-01"
+end.date1 <- ""
 
-Haw1 <- readNWISuv(siteNumbers = siteNo1,
+Haw1 <- readNWISdv(siteNumbers = siteNo1,
                      parameterCd = pCode1,
                      startDate = start.date1,
                      endDate = end.date1)
@@ -37,10 +37,10 @@ view(Haw1)
 ```{r}
 siteNo2 <- "02096960"
 pCode2 <- "00060"
-start.date2 <- "1989-01-01"
-end.date2 <- "2019-07-15"
+start.date2 <- "1999-01-01"
+end.date2 <- ""
 
-Haw2 <- readNWISuv(siteNumbers = siteNo2,
+Haw2 <- readNWISdv(siteNumbers = siteNo2,
                      parameterCd = pCode2,
                      startDate = start.date2,
                      endDate = end.date2)
@@ -57,6 +57,30 @@ Haw1_att
 
 Haw2_att <- attr(Haw2, "url")
 Haw2_att
+```
+
+## Data Exploration
+```{r}
+Haw1_p_Info <- attr(Haw1, "variableInfo")
+Haw1_site_Info <- attr(Haw1, "siteInfo")
+  
+Haw1_Plot <- ggplot(Haw1, aes(Date, Flow)) +
+         geom_line() +
+         xlab("Year") +
+         ylab(Haw1_p_Info$variableDescription) +
+         ggtitle(Haw1_site_Info$station_nm)
+
+Haw2_p_Info <- attr(Haw2, "variableInfo")
+Haw2_site_Info <- attr(Haw2, "siteInfo")
+  
+Haw2_Plot <- ggplot(Haw2, aes(Date, Flow)) +
+         geom_line() +
+         xlab("Year") +
+         ylab(Haw2_p_Info$variableDescription) +
+         ggtitle(Haw2_site_Info$station_nm)
+
+Haw1_Plot
+Haw2_Plot
 ```
 
 ## Potential Additional Sites
